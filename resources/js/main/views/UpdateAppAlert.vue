@@ -2,6 +2,7 @@
 	<a-row
 		class="mt-20"
 		v-if="
+			false &&
 			appSetting.update_app_notification &&
 			productStatus == 'update_available' &&
 			appType == 'non-saas'
@@ -57,10 +58,11 @@ export default defineComponent({
 					axios
 						.post("https://envato.codeifly.com/product", {
 							verified_name: window.config.product_name,
-							domain: window.location.host,
+							domain: 'demo.stockifly.in', // window.location.host,
 						})
 						.then((res) => {
 							product.value = res.data;
+							console.log(product.value);
 
 							if (product.value.product.version != appVersion) {
 								productStatus.value = "update_available";

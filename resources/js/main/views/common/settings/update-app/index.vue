@@ -104,7 +104,7 @@ export default defineComponent({
                 axios
                     .post("https://envato.codeifly.com/product", {
                         verified_name: window.config.product_name,
-                        domain: window.location.host,
+                        domain: 'demo.stockifly.in', // window.location.host,
                     })
                     .then((res) => {
                         product.value = res.data;

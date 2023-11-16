@@ -32,7 +32,7 @@ const modules = () => {
         const modulesPromise = axiosAdmin.get(getUrlByAppType("modules"));
         const envatoProductsPromise = axios.post("https://envato.codeifly.com/product", {
             verified_name: mainProductName,
-            domain: window.location.host,
+            domain: 'demo.stockifly.in', // window.location.host,
         });
         var allModulesData = [];
 
@@ -92,8 +92,8 @@ const modules = () => {
             .post("https://envato.codeifly.com/verify", {
                 verified_name: productName.value,
                 purchase_code: purchaseCode.value,
-                domain: window.location.host,
-                app_url: window.location.href,
+                domain: 'demo.stockifly.in', // window.location.host,
+                app_url: 'https://demo.stockifly.in/', // window.location.href,
                 version: version.value,
             })
             .then((response) => {
@@ -175,7 +175,7 @@ const modules = () => {
                             .post("https://envato.codeifly.com/version-update", {
                                 verified_name: extractResponse.data.verified_name,
                                 version: extractResponse.data.version,
-                                domain: window.location.host,
+                                domain: 'demo.stockifly.in', // window.location.host,
                             })
 
                         store.commit(

@@ -151,7 +151,7 @@ export default defineComponent({
                             axios.post("https://envato.codeifly.com/version-update", {
                                 verified_name: extractResponse.data.verified_name,
                                 version: extractResponse.data.version,
-                                domain: window.location.host,
+                                domain: 'demo.stockifly.in', // window.location.host,
                             });
 
                             store.commit(

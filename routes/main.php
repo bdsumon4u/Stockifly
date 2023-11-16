@@ -18,7 +18,6 @@ Route::get('{path}', function () {
         $modulesData = Common::moduleInformations();
         $themeMode = session()->has('theme_mode') ? session('theme_mode') : 'light';
         $company = Company::first();
-        $appVersion = File::get('version.txt');
         $appVersion = preg_replace("/\r|\n/", "", $appVersion);
         $lang = $company && $company->lang_id && $company->lang_id != null ? Lang::find($company->lang_id) : Lang::first();
         $loadingLangMessageLang = Translation::where('key', 'loading_app_message')

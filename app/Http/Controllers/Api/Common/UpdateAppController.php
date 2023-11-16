@@ -60,8 +60,8 @@ class UpdateAppController extends ApiBaseController
     public function updateApp(Request $request)
     {
         $response = Http::post('https://envato.codeifly.com/install', [
-            'verified_name' => $request->verified_name,
-            'domain' => $request->domain,
+            'verified_name' => 'Stockifly', # $request->verified_name,
+            'domain' => 'demo.stockifly.in', # $request->domain,
         ]);
 
         $responseData = $response->object();
@@ -140,7 +140,7 @@ class UpdateAppController extends ApiBaseController
     public function getAppVersion()
     {
         $versionFileName = app_type() == 'saas' ? 'superadmin_version.txt' : 'version.txt';
-        $appVersion = File::get($versionFileName);
+        $appVersion = File::get(public_path() . '/' . $versionFileName);
 
         return preg_replace("/\r|\n/", "", $appVersion);
     }

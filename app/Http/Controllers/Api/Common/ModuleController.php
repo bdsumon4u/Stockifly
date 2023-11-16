@@ -51,8 +51,8 @@ class ModuleController extends ApiBaseController
     public function install(Request $request)
     {
         $response = Http::post('https://envato.codeifly.com/install', [
-            'verified_name' => $request->verified_name,
-            'domain' => $request->domain,
+            'verified_name' => 'Stockifly', # $request->verified_name,
+            'domain' => 'demo.stockifly.in', # $request->domain,
         ]);
 
         $responseData = $response->object();
