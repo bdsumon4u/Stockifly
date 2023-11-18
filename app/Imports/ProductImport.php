@@ -43,14 +43,20 @@ class ProductImport implements ToArray, WithHeadingRow
 
                 // Category
                 $categoryName = trim($product['category']);
-                $category = Category::where('name', $categoryName)->first();
+                $category = Category::query()->firstOrCreate(
+                    ['name' => $categoryName],
+                    ['slug' => Str::slug($categoryName, '-')]
+                );
                 if (!$category) {
                     throw new ApiException('Category Not Found');
                 }
 
                 // Brand
                 $brandName = trim($product['brand']);
-                $brand = Brand::where('name', $brandName)->first();
+                $brand = Brand::query()->firstOrCreate(
+                    ['name' => $brandName],
+                    ['slug' => Str::slug($brandName, '-')]
+                );
                 if (!$brand) {
                     throw new ApiException('Brand Not Found');
                 }
