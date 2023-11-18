@@ -17,6 +17,10 @@
                     "
                 />
             </a-col>
+            <a-col :xs="24" :sm="24" :md="12" :lg="18" :xl="18" style="display: flex; justify-content: space-around; align-items: center;">
+                <div>Stock Purchase Value: <strong>{{ responseData.stockPurchaseValue }}</strong></div>
+                <div>Stock Sales Value: <strong>{{ responseData.stockSalesValue }}</strong></div>
+            </a-col>
         </a-row>
 
         <div class="mt-30 mb-20">

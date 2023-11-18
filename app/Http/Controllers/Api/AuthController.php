@@ -293,6 +293,20 @@ class AuthController extends ApiBaseController
 
     public function dashboard(Request $request)
     {
+        $products = Product::withoutGlobalScope(CompanyScope::class)
+            ->where('warehouse_id', '=', $this->getWarehouseId())
+            ->where('product_type', '=', 'single')
+            ->with(['details:id,product_id,purchase_price,mrp,sales_price,current_stock'])
+            ->get(['id', 'warehouse_id', 'product_type']);
+
+        $stockPurchaseValue = $products->sum(function ($product) {
+            return $product->details->current_stock * $product->details->purchase_price;
+        });
+
+        $stockSalesValue = $products->sum(function ($product) {
+            return $product->details->current_stock * $product->details->sales_price;
+        });
+
         $data = [
             'topSellingProducts' => $this->getTopProducts(),
             'purchaseSales' => $this->getPurchaseSales(),
@@ -301,6 +315,8 @@ class AuthController extends ApiBaseController
             'stockHistoryStatsData' => $this->getStockHistoryStatsData(),
             'stateData' => $this->getStatsData(),
             'paymentChartData' => $this->getPaymentChartData(),
+            'stockPurchaseValue' => $stockPurchaseValue,
+            'stockSalesValue' => $stockSalesValue,
         ];
 
         return ApiResponse::make('Data fetched', $data);
