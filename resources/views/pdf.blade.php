@@ -331,11 +331,11 @@
         <table class="information"  cellpadding="4px" cellspacing="0" style="border: 1px solid #a9a9a9;">
             <tr class="heading" >
                 <td style="width: 40%; padding: 12px;" >
-                    Seller
+                    {{ $order->order_type == 'purchases' ? 'Buyer' : 'Seller'}}
                 </td>
                 <td style="width: 20%"></td>
                 <td style="width: 40%; padding-left: 15px;">
-                    Buyer
+                    {{ $order->order_type == 'purchases' ? 'Supplier' : 'Buyer' }}
                 </td>
             </tr>
             <tr>
